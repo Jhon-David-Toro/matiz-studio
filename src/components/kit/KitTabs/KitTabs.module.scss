@@ -1,0 +1,51 @@
+@use "abstracts/kit";
+
+.tabs {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--space-1);
+  overflow-x: auto;
+}
+
+.tab {
+  min-height: 2.5rem;
+  padding: 0 var(--space-3);
+  border: 0;
+  background: none;
+  color: var(--color-text-muted);
+  font: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+
+  @include kit.text("sm");
+  @include kit.focus(-2px);
+}
+
+.line {
+  width: 100%;
+  border-bottom: 1px solid var(--color-border);
+
+  .tab[aria-selected="true"] {
+    box-shadow: inset 0 -2px 0 var(--color-primary);
+    color: var(--color-text);
+  }
+}
+
+.pill {
+  align-self: flex-start;
+  padding: var(--space-1);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-muted);
+
+  .tab {
+    min-height: 2rem;
+    border-radius: var(--radius-full);
+  }
+
+  .tab[aria-selected="true"] {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: var(--shadow-sm);
+  }
+}
