@@ -1,0 +1,26 @@
+@use "abstracts" as *;
+@use "abstracts/typography";
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  min-width: 0;
+}
+
+.label {
+  @include typography.style("label-m");
+}
+
+.select {
+  @include field-control;
+
+  padding-inline-end: var(--spacing-40);
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, currentcolor 50%), linear-gradient(135deg, currentcolor 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.25rem) 50%,
+    calc(100% - 0.9375rem) 50%;
+  background-size: 0.3125rem 0.3125rem;
+  background-repeat: no-repeat;
+}
