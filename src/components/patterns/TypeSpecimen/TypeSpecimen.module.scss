@@ -1,0 +1,43 @@
+@use "abstracts/typography";
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  align-items: baseline;
+  gap: var(--spacing-16);
+  padding-block: var(--spacing-12);
+
+  & + & {
+    border-block-start: var(--border-width-default) solid var(--color-border-default);
+  }
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  @include typography.style("label-m");
+}
+
+.metrics {
+  color: var(--color-text-tertiary);
+  font-family: var(--font-family-data);
+  font-size: var(--font-size-12);
+}
+
+.sample {
+  overflow: hidden;
+  font-family: var(--sample-family);
+  font-size: var(--sample-size);
+  font-weight: var(--sample-weight);
+  line-height: var(--sample-line);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
