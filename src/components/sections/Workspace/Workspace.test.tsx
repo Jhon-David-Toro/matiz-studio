@@ -8,11 +8,21 @@ import { generateSystem } from "@/lib/system/system.utils";
 import { Workspace } from "./Workspace";
 
 describe("Workspace", () => {
-  it("starts on the preview and opens every other view", async () => {
+  it("switches scenes and keeps the theme between the preview and the gallery", async () => {
     render(<Workspace system={generateSystem(DEFAULT_CONFIG)} onNotice={vi.fn()} onCopy={vi.fn()} />);
-    expect(screen.getByRole("tabpanel", { name: "Vista previa" })).toContainElement(screen.getByRole("region", { name: "Vista previa del sistema" }));
+    await userEvent.click(screen.getByRole("radio", { name: "Dashboard" }));
+    expect(screen.getByRole("heading", { name: "Buenos días, Ana" })).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("radio", { name: "Oscuro" }));
+    await userEvent.click(screen.getByRole("tab", { name: "Componentes" }));
+    expect(screen.queryByRole("radiogroup", { name: "Escena" })).not.toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Galería de componentes" })).toHaveAttribute("data-theme", "dark");
+  });
+
+  it("opens the tokens, accessibility and export views without the canvas toolbar", async () => {
+    render(<Workspace system={generateSystem(DEFAULT_CONFIG)} onNotice={vi.fn()} onCopy={vi.fn()} />);
     await userEvent.click(screen.getByRole("tab", { name: "Tokens" }));
     expect(screen.getByRole("region", { name: "Paletas" })).toBeInTheDocument();
+    expect(screen.queryByLabelText("Simular visión")).not.toBeInTheDocument();
     await userEvent.click(screen.getByRole("tab", { name: "Accesibilidad" }));
     expect(screen.getByRole("region", { name: "Tema claro" })).toBeInTheDocument();
     await userEvent.click(screen.getByRole("tab", { name: "Exportar" }));
