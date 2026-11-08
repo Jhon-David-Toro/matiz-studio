@@ -1,0 +1,56 @@
+@use "abstracts/kit";
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+
+  @include kit.text("sm");
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.value {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+.track {
+  height: 0.5rem;
+  overflow: hidden;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-muted);
+}
+
+.bar {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  transform: scaleX(var(--value));
+  transform-origin: left;
+}
+
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+
+  @include kit.text("sm");
+}
+
+.spin {
+  color: var(--color-primary);
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
