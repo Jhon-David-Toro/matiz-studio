@@ -1,0 +1,110 @@
+@use "abstracts/kit";
+
+.button {
+  --kit-height: 2.75rem;
+  --kit-pad: var(--space-4);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--kit-height);
+  padding: 0 var(--kit-pad);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background-color: var(--kit-bg);
+  color: var(--kit-fg);
+  font: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: var(--kit-bg-hover, var(--kit-bg));
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @include kit.focus;
+}
+
+.sm {
+  --kit-height: 2rem;
+  --kit-pad: var(--space-3);
+
+  @include kit.text("sm");
+}
+
+.lg {
+  --kit-height: 3.25rem;
+  --kit-pad: var(--space-6);
+
+  @include kit.text("lg");
+}
+
+.primary {
+  --kit-bg: var(--color-primary);
+  --kit-bg-hover: var(--color-primary-hover);
+  --kit-fg: var(--color-on-primary);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.secondary {
+  --kit-bg: var(--color-surface);
+  --kit-bg-hover: var(--color-surface-muted);
+  --kit-fg: var(--color-text);
+
+  border-color: var(--color-border-strong);
+}
+
+.ghost {
+  --kit-bg: transparent;
+  --kit-bg-hover: var(--color-surface-muted);
+  --kit-fg: var(--color-primary-text);
+}
+
+.accent {
+  --kit-bg: var(--color-accent);
+  --kit-fg: var(--color-on-accent);
+}
+
+.danger {
+  --kit-bg: var(--color-danger);
+  --kit-fg: var(--color-surface);
+}
+
+.iconOnly {
+  width: var(--kit-height);
+  padding: 0;
+}
+
+.full {
+  width: 100%;
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
