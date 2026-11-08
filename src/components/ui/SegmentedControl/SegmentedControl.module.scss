@@ -1,0 +1,44 @@
+@use "abstracts" as *;
+@use "abstracts/typography";
+
+.root {
+  display: inline-flex;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-full);
+  background-color: var(--color-background-muted);
+}
+
+.option {
+  position: relative;
+  flex: 1 1 0;
+}
+
+.input {
+  @include visually-hidden;
+}
+
+.text {
+  display: block;
+  padding: var(--spacing-8) var(--spacing-16);
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-duration-base) var(--motion-ease-standard),
+    color var(--motion-duration-base) var(--motion-ease-standard);
+
+  @include typography.style("label-m");
+
+  .input:checked + & {
+    background-color: var(--color-background-surface);
+    color: var(--color-text-primary);
+    box-shadow: var(--elevation-card);
+  }
+
+  .input:focus-visible + & {
+    @include focus-ring;
+  }
+}
