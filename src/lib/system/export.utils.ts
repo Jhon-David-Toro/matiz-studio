@@ -100,7 +100,40 @@ export function toJson(system: DesignSystem): string {
   return `${JSON.stringify(tokens, null, 2)}\n`;
 }
 
-const EXPORTERS: Record<ExportFormat, (system: DesignSystem) => string> = { css: toCss, scss: toScss, json: toJson };
+/**
+ * Semantic tokens of a theme as plain colors keyed by name.
+ *
+ * @param theme Semantic tokens of one mode.
+ * @returns The colors.
+ */
+function plainTheme(theme: Theme): Record<string, string> {
+  return Object.fromEntries(Object.values(theme).map((token) => [token.name, token.hex]));
+}
+
+/**
+ * Design system as a typed TypeScript object, for CSS-in-JS, React Native or charts.
+ *
+ * @param system Design system.
+ * @returns The TypeScript file.
+ */
+export function toTypeScript(system: DesignSystem): string {
+  const tokens = {
+    color: Object.fromEntries(system.palettes.map((palette) => [palette.name, Object.fromEntries(palette.swatches.map((swatch) => [swatch.step, swatch.hex]))])),
+    theme: { light: plainTheme(system.themes.light), dark: plainTheme(system.themes.dark) },
+    font: { heading: system.fonts.heading.stack, body: system.fonts.body.stack, mono: system.fonts.mono.stack },
+    text: Object.fromEntries(system.type.map((style) => [style.name, { size: style.size, lineHeight: style.lineHeight, weight: style.weight }])),
+    space: Object.fromEntries(system.spacing.map((space) => [space.name, space.value])),
+    radius: Object.fromEntries(system.radius.map((radius) => [radius.name, radius.value])),
+    shadow: Object.fromEntries(system.shadows.map((shadow) => [shadow.name, shadow.value])),
+  };
+  return `// ${FILE_HEADER}
+export const tokens = ${JSON.stringify(tokens, null, 2)} as const;
+
+export type Tokens = typeof tokens;
+`;
+}
+
+const EXPORTERS: Record<ExportFormat, (system: DesignSystem) => string> = { css: toCss, scss: toScss, json: toJson, ts: toTypeScript };
 
 /**
  * Design system written in a format.

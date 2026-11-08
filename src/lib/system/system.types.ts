@@ -144,7 +144,7 @@ export type TokenEntry = {
   value: string;
 };
 
-export type ExportFormat = "css" | "scss" | "json";
+export type ExportFormat = "css" | "scss" | "json" | "ts";
 
 export type DesignSystem = {
   config: SystemConfig;

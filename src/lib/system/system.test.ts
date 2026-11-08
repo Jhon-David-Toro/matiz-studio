@@ -106,6 +106,13 @@ describe("exports", () => {
     expect(json.shadow.md.$type).toBe("shadow");
   });
 
+  it("writes a typed TypeScript object", () => {
+    const ts = exportSystem(system, "ts");
+    expect(ts).toContain("export const tokens = {");
+    expect(ts).toContain("as const;");
+    expect(ts).toContain(`"primary": "${system.themes.light.primary.hex}"`);
+  });
+
   it("gives the preview every token as a custom property", () => {
     expect(themeStyle(system, "dark")["--color-background"]).toBe(system.themes.dark.background.hex);
   });
