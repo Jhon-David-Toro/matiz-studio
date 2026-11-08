@@ -1,0 +1,98 @@
+/*
+ * Mixins of the sample kit (components/kit). They use ONLY the custom properties that Matiz generates
+ * (--color-*, --space-*, --radius-*, --shadow-*, --font-*, --text-*), never the tokens of the app itself.
+ */
+
+@mixin focus($offset: 2px) {
+  &:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: $offset;
+  }
+}
+
+@mixin text($name) {
+  font-size: var(--text-#{$name}-size);
+  line-height: var(--text-#{$name}-line-height);
+}
+
+@mixin heading($name) {
+  @include text($name);
+
+  font-family: var(--font-heading);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+@mixin surface {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
+}
+
+@mixin control {
+  width: 100%;
+  min-height: 2.75rem;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  &:disabled {
+    border-color: var(--color-border);
+    background-color: var(--color-surface-muted);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--color-danger);
+  }
+
+  @include focus(1px);
+}
+
+@mixin tones {
+  .neutral {
+    --tone: var(--color-text-muted);
+    --tone-soft: var(--color-surface-muted);
+    --tone-on: var(--color-text);
+  }
+
+  .primary {
+    --tone: var(--color-primary-text);
+    --tone-soft: var(--color-primary-soft);
+    --tone-on: var(--color-on-primary-soft);
+  }
+
+  .success {
+    --tone: var(--color-success);
+    --tone-soft: var(--color-success-soft);
+    --tone-on: var(--color-success);
+  }
+
+  .warning {
+    --tone: var(--color-warning);
+    --tone-soft: var(--color-warning-soft);
+    --tone-on: var(--color-warning);
+  }
+
+  .danger {
+    --tone: var(--color-danger);
+    --tone-soft: var(--color-danger-soft);
+    --tone-on: var(--color-danger);
+  }
+
+  .info {
+    --tone: var(--color-info);
+    --tone-soft: var(--color-info-soft);
+    --tone-on: var(--color-info);
+  }
+}
