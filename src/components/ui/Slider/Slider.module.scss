@@ -1,0 +1,89 @@
+@use "abstracts" as *;
+@use "abstracts/typography";
+
+.slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.label {
+  @include typography.style("label-m");
+}
+
+.value {
+  color: var(--color-text-secondary);
+
+  @include typography.style("numeric-m");
+}
+
+.input {
+  --track: var(--color-background-muted);
+  --thumb-size: 1.125rem;
+
+  width: 100%;
+  height: var(--layout-touch-target);
+  margin: 0;
+  background: none;
+  appearance: none;
+  cursor: pointer;
+
+  &::-webkit-slider-runnable-track {
+    height: 0.375rem;
+    border-radius: var(--radius-full);
+    background: linear-gradient(to right, var(--color-brand-violet) var(--fill), var(--track) var(--fill));
+  }
+
+  &::-moz-range-track {
+    height: 0.375rem;
+    border-radius: var(--radius-full);
+    background: linear-gradient(to right, var(--color-brand-violet) var(--fill), var(--track) var(--fill));
+  }
+
+  &::-webkit-slider-thumb {
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    margin-top: calc((0.375rem - var(--thumb-size)) / 2);
+    border: 3px solid var(--color-neutral-0);
+    border-radius: var(--radius-full);
+    background-color: var(--color-brand-violet);
+    box-shadow: 0 1px 4px rgb(23 22 28 / 30%);
+    appearance: none;
+  }
+
+  &::-moz-range-thumb {
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    border: 3px solid var(--color-neutral-0);
+    border-radius: var(--radius-full);
+    background-color: var(--color-brand-violet);
+    box-shadow: 0 1px 4px rgb(23 22 28 / 30%);
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      @include focus-ring;
+    }
+
+    &::-moz-range-thumb {
+      @include focus-ring;
+    }
+  }
+}
+
+.ends {
+  display: flex;
+  justify-content: space-between;
+  margin-top: calc(var(--spacing-12) * -1);
+  color: var(--color-text-tertiary);
+
+  @include typography.style("body-s");
+}
