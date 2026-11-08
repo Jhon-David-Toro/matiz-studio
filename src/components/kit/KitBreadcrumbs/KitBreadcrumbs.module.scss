@@ -1,0 +1,36 @@
+@use "abstracts/kit";
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include kit.text("sm");
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.separator {
+  margin: 0 var(--space-1);
+  color: var(--color-text-muted);
+}
+
+.link {
+  color: var(--color-primary-text);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @include kit.focus;
+}
+
+.current {
+  color: var(--color-text-muted);
+}
