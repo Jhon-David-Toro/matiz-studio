@@ -1,0 +1,52 @@
+@use "abstracts" as *;
+@use "abstracts/typography";
+
+.region {
+  position: fixed;
+  z-index: var(--z-modal);
+  inset-inline: var(--spacing-16);
+  inset-block-end: calc(var(--spacing-16) + var(--layout-bottom-nav-height, 0px));
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.snackbar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+  max-width: 30rem;
+  padding: var(--spacing-12) var(--spacing-12) var(--spacing-12) var(--spacing-20);
+  border-radius: var(--radius-full);
+  background-color: var(--color-neutral-900);
+  color: var(--color-neutral-0);
+  box-shadow: var(--elevation-raised);
+  pointer-events: auto;
+  animation: rise var(--motion-duration-slow) var(--motion-ease-standard);
+}
+
+.message {
+  @include typography.style("body-m");
+}
+
+.action {
+  @include button-reset;
+  @include touch-target;
+
+  padding: var(--spacing-8) var(--spacing-12);
+  border-radius: var(--radius-full);
+  color: var(--color-accent-on-dark);
+
+  @include typography.style("button-m");
+
+  @include on-hover {
+    background-color: rgb(255 255 255 / 10%);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--spacing-16));
+  }
+}
