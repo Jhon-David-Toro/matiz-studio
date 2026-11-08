@@ -1,0 +1,51 @@
+@use "abstracts" as *;
+@use "abstracts/typography";
+
+.header {
+  position: sticky;
+  z-index: var(--z-sticky);
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+  padding: var(--spacing-12) var(--layout-margin);
+  border-block-end: var(--border-width-default) solid var(--color-border-default);
+  background-color: rgb(255 255 255 / 85%);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  min-width: 0;
+}
+
+.mark {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--radius-sm);
+  background: conic-gradient(from 200deg, #5b3cff, #ff5c8a, #ffb340, #2ecf9a, #3c8bff, #5b3cff);
+}
+
+.name {
+  @include typography.style("heading-h2");
+}
+
+.tagline {
+  padding-inline-start: var(--spacing-12);
+  border-inline-start: var(--border-width-default) solid var(--color-border-default);
+  color: var(--color-text-secondary);
+
+  @include typography.style("body-s");
+
+  @include mobile-only {
+    display: none;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-8);
+}
