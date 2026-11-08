@@ -1,0 +1,17 @@
+@use "abstracts" as *;
+
+.workspace {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+  min-width: 0;
+  padding: var(--spacing-16) var(--layout-margin) var(--spacing-64);
+
+  @include desktop {
+    padding: var(--spacing-24) var(--spacing-40) var(--spacing-64);
+  }
+}
+
+.view {
+  min-width: 0;
+}
