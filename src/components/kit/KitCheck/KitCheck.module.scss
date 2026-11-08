@@ -1,0 +1,97 @@
+@use "abstracts/kit";
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  cursor: pointer;
+
+  &:has(:disabled) {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+.input {
+  flex: 0 0 auto;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0.125rem 0 0;
+  border: 1.5px solid var(--color-border-strong);
+  background-color: var(--color-surface);
+  appearance: none;
+  cursor: inherit;
+  display: grid;
+  place-content: center;
+
+  &::before {
+    content: "";
+  }
+
+  @include kit.focus;
+}
+
+.checkbox {
+  border-radius: calc(var(--radius-sm) * 0.6);
+
+  &:checked {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+
+    &::before {
+      width: 0.3rem;
+      height: 0.6rem;
+      border: solid var(--color-on-primary);
+      border-width: 0 2px 2px 0;
+      transform: translateY(-1px) rotate(45deg);
+    }
+  }
+}
+
+.radio {
+  border-radius: 50%;
+
+  &:checked {
+    border: 6px solid var(--color-primary);
+  }
+}
+
+.switch {
+  width: 2.5rem;
+  height: 1.5rem;
+  margin-top: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--color-border-strong);
+  place-content: center start;
+  padding: 3px;
+  transition: background-color 160ms ease;
+
+  &::before {
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: 50%;
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    transition: transform 160ms ease;
+  }
+
+  &:checked {
+    background-color: var(--color-primary);
+
+    &::before {
+      transform: translateX(1rem);
+    }
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  color: var(--color-text-muted);
+
+  @include kit.text("sm");
+}
