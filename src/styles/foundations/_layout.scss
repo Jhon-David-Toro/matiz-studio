@@ -1,0 +1,20 @@
+@use "../abstracts/breakpoints";
+
+:root {
+  --layout-content-max-width: 70rem; /* 1120px */
+  --layout-touch-target: 2.75rem; /* 44px */
+  --layout-sidebar-width: 15rem; /* 240px */
+  --layout-margin: var(--spacing-16);
+}
+
+@include breakpoints.tablet {
+  :root {
+    --layout-margin: var(--spacing-32);
+  }
+}
+
+@include breakpoints.desktop {
+  :root {
+    --layout-margin: var(--spacing-48);
+  }
+}

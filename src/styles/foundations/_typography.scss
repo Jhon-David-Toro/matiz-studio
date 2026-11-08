@@ -1,0 +1,55 @@
+@use "../abstracts/typography";
+
+:root {
+  /* Families */
+
+  --font-family-display: "Space Grotesk Variable", "Segoe UI", system-ui, sans-serif;
+  --font-family-body: "Inter Variable", "Segoe UI", system-ui, sans-serif;
+  --font-family-data: "JetBrains Mono Variable", ui-monospace, "Courier New", monospace;
+
+  /* Weights */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Sizes (px name, rem value) */
+
+  --font-size-12: 0.75rem;
+  --font-size-13: 0.8125rem;
+  --font-size-14: 0.875rem;
+  --font-size-15: 0.9375rem;
+  --font-size-16: 1rem;
+  --font-size-18: 1.125rem;
+  --font-size-20: 1.25rem;
+  --font-size-24: 1.5rem;
+  --font-size-28: 1.75rem;
+  --font-size-32: 2rem;
+  --font-size-40: 2.5rem;
+  --font-size-48: 3rem;
+
+  /* Line heights */
+
+  --line-height-16: 1rem;
+  --line-height-20: 1.25rem;
+  --line-height-24: 1.5rem;
+  --line-height-28: 1.75rem;
+  --line-height-32: 2rem;
+  --line-height-36: 2.25rem;
+  --line-height-44: 2.75rem;
+  --line-height-52: 3.25rem;
+
+  /* Letter spacing */
+
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.06em;
+}
+
+/* Global .type-* classes, one per text style */
+@each $name, $style in typography.$styles {
+  .type-#{$name} {
+    @include typography.style($name);
+  }
+}

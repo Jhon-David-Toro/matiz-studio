@@ -1,0 +1,60 @@
+@use "sass:map";
+@use "breakpoints";
+
+/*
+ * Text styles. Single source of truth:
+ * - foundations/_typography.scss generates the global .type-* classes
+ * - CSS Modules use @include typography.style("body-m")
+ *
+ * Keys: family (display|body|data), weight, size, line-height (px), letter-spacing (suffix of --letter-spacing-*).
+ */
+$styles: (
+  "display-l": (family: display, weight: semibold, size: 40, line-height: 44, letter-spacing: tight,
+    desktop: (size: 48, line-height: 52)),
+  "heading-h1": (family: display, weight: semibold, size: 28, line-height: 32, letter-spacing: tight,
+    desktop: (size: 32, line-height: 36)),
+  "heading-h2": (family: display, weight: semibold, size: 20, line-height: 28, letter-spacing: tight),
+  "heading-h3": (family: body, weight: semibold, size: 16, line-height: 24, letter-spacing: normal),
+
+  "body-l": (family: body, weight: regular, size: 16, line-height: 24, letter-spacing: normal),
+  "body-m": (family: body, weight: regular, size: 15, line-height: 24, letter-spacing: normal),
+  "body-m-strong": (family: body, weight: semibold, size: 15, line-height: 24, letter-spacing: normal),
+  "body-s": (family: body, weight: regular, size: 13, line-height: 20, letter-spacing: normal),
+
+  "label-m": (family: body, weight: medium, size: 14, line-height: 20, letter-spacing: normal),
+  "overline": (family: body, weight: semibold, size: 12, line-height: 16, letter-spacing: wide, uppercase: true),
+  "button-m": (family: body, weight: semibold, size: 14, line-height: 20, letter-spacing: normal),
+
+  "numeric-l": (family: data, weight: medium, size: 28, line-height: 32, letter-spacing: tight,
+    desktop: (size: 32, line-height: 36)),
+  "numeric-m": (family: data, weight: medium, size: 15, line-height: 24, letter-spacing: normal)
+);
+
+@mixin _size($size, $line-height) {
+  font-size: var(--font-size-#{$size});
+  line-height: var(--line-height-#{$line-height});
+}
+
+@mixin style($name) {
+  $s: map.get($styles, $name);
+
+  font-family: var(--font-family-#{map.get($s, family)});
+  font-weight: var(--font-weight-#{map.get($s, weight)});
+  letter-spacing: var(--letter-spacing-#{map.get($s, letter-spacing)});
+
+  @include _size(map.get($s, size), map.get($s, line-height));
+
+  @if map.get($s, family) == data {
+    font-variant-numeric: tabular-nums;
+  }
+
+  @if map.get($s, uppercase) {
+    text-transform: uppercase;
+  }
+
+  @if map.has-key($s, desktop) {
+    @include breakpoints.desktop {
+      @include _size(map.get($s, desktop, size), map.get($s, desktop, line-height));
+    }
+  }
+}

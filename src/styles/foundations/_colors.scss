@@ -1,0 +1,71 @@
+:root {
+  /* ========================================
+   * BRAND
+   * ======================================== */
+
+  --color-brand-ink: #17161c;
+  --color-brand-violet: #5b3cff;
+  --color-brand-violet-hover: #4a2ee6;
+  --color-brand-violet-pressed: #3d24c2;
+  --color-brand-violet-soft: #e6e0ff;
+  --color-brand-violet-subtle: #f3f0ff;
+  --color-brand-violet-light: #b9a9ff;
+
+  /* ========================================
+   * NEUTRAL
+   * ======================================== */
+
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #f7f7f9;
+  --color-neutral-100: #eeeef2;
+  --color-neutral-200: #e1e1e7;
+  --color-neutral-300: #c9c9d2;
+  --color-neutral-500: #85858f;
+  --color-neutral-600: #63636d;
+  --color-neutral-700: #45454d;
+  --color-neutral-900: #17161c;
+
+  /* ========================================
+   * FEEDBACK
+   * ======================================== */
+
+  --color-success-strong: #18794e;
+  --color-success-soft: #ddf3e6;
+  --color-warning-strong: #a15c07;
+  --color-warning-soft: #fdf0d7;
+  --color-danger-strong: #c4320a;
+  --color-danger-soft: #fde6dd;
+  --color-error-strong: #b3261e;
+
+  /* ========================================
+   * SEMANTIC
+   * ======================================== */
+
+  --color-background-page: var(--color-neutral-50);
+  --color-background-surface: var(--color-neutral-0);
+  --color-background-muted: var(--color-neutral-100);
+  --color-background-inverse: var(--color-brand-ink);
+
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-tertiary: var(--color-neutral-500);
+  --color-text-brand: var(--color-brand-violet);
+  --color-text-on-inverse: var(--color-neutral-0);
+
+  --color-border-default: var(--color-neutral-200);
+  --color-border-strong: var(--color-neutral-300);
+  --color-border-focus: var(--color-brand-violet);
+
+  --color-action-primary: var(--color-brand-ink);
+  --color-action-primary-hover: var(--color-neutral-700);
+  --color-action-primary-pressed: var(--color-neutral-900);
+  --color-action-primary-text: var(--color-neutral-0);
+  --color-action-primary-subtle: var(--color-brand-violet-subtle);
+  --color-action-disabled: var(--color-neutral-200);
+  --color-action-disabled-text: var(--color-neutral-500);
+
+  --color-accent-on-dark: var(--color-brand-violet-light);
+
+  --color-focus-ring: var(--color-brand-violet);
+  --color-overlay: rgb(23 22 28 / 45%);
+}

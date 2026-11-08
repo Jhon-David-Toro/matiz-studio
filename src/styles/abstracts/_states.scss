@@ -1,0 +1,19 @@
+@mixin on-hover {
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      @content;
+    }
+  }
+}
+
+@mixin on-pressed {
+  &:active:not(:disabled) {
+    @content;
+  }
+}
+
+@mixin on-focus {
+  &:focus-visible {
+    @content;
+  }
+}
