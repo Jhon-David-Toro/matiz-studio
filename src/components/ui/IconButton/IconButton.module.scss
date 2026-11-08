@@ -1,0 +1,28 @@
+@use "abstracts" as *;
+
+.button {
+  @include button-reset;
+  @include touch-target;
+
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+  transition:
+    background-color var(--motion-duration-base) var(--motion-ease-standard),
+    color var(--motion-duration-base) var(--motion-ease-standard);
+
+  @include on-hover {
+    background-color: var(--color-background-muted);
+    color: var(--color-text-primary);
+  }
+}
+
+.danger {
+  @include on-hover {
+    background-color: var(--color-danger-soft);
+    color: var(--color-danger-strong);
+  }
+}
