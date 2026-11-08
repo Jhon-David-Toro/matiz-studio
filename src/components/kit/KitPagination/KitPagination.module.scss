@@ -1,0 +1,38 @@
+@use "abstracts/kit";
+
+.pagination {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.page {
+  display: grid;
+  place-items: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--color-text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover:not(:disabled, .current) {
+    background-color: var(--color-surface-muted);
+  }
+
+  &:disabled {
+    color: var(--color-text-muted);
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @include kit.text("sm");
+  @include kit.focus;
+}
+
+.current {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}

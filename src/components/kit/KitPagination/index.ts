@@ -1,0 +1,1 @@
+export { KitPagination } from "./KitPagination";
