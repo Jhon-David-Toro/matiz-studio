@@ -1,0 +1,53 @@
+@use "abstracts/typography";
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: var(--spacing-12);
+  padding-block: var(--spacing-12);
+
+  & + & {
+    border-block-start: var(--border-width-default) solid var(--color-border-default);
+  }
+}
+
+.sample {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background-color: var(--bg);
+  color: var(--fg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.label {
+  @include typography.style("body-m-strong");
+}
+
+.tokens {
+  overflow: hidden;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-data);
+  font-size: var(--font-size-12);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ratio {
+  @include typography.style("numeric-m");
+}
