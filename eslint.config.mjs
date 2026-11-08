@@ -19,6 +19,7 @@ const eslintConfig = defineConfig([
       "max-nested-callbacks": ["error", 3],
       "max-lines-per-function": ["error", { max: 40, skipBlankLines: true, skipComments: true }],
       "@next/next/no-html-link-for-pages": "off",
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_", ignoreRestSiblings: true }],
     },
   },
   // Effects only call a named function
