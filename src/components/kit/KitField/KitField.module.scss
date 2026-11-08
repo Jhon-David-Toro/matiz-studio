@@ -1,0 +1,47 @@
+@use "abstracts/kit";
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.label {
+  font-weight: 600;
+
+  @include kit.text("sm");
+}
+
+.wrap {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: var(--space-3);
+  color: var(--color-text-muted);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.control {
+  @include kit.control;
+
+  resize: vertical;
+}
+
+.withIcon {
+  padding-left: calc(var(--space-3) + 1.5rem);
+}
+
+.message {
+  color: var(--color-text-muted);
+
+  @include kit.text("sm");
+}
+
+.error {
+  color: var(--color-danger);
+}
