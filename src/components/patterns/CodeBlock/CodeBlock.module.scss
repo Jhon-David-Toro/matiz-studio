@@ -1,0 +1,13 @@
+.block {
+  max-height: 32rem;
+  margin: 0;
+  padding: var(--spacing-20);
+  overflow: auto;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-background-inverse);
+  color: var(--color-text-on-inverse);
+  font-family: var(--font-family-data);
+  font-size: var(--font-size-13);
+  line-height: var(--line-height-20);
+  tab-size: 2;
+}
