@@ -1,32 +1,27 @@
-"use client";
+import { DashboardScene } from "@/components/sections/DashboardScene";
+import { LandingScene } from "@/components/sections/LandingScene";
+import { MobileScene } from "@/components/sections/MobileScene";
+import { ThemeCanvas } from "@/components/sections/ThemeCanvas";
 
-import { useState } from "react";
-
-import type { VisionMode } from "@/lib/color/color.types";
-import type { ThemeMode } from "@/lib/system/system.types";
-
+import { CANVAS_LABEL } from "./PreviewPanel.constants";
 import type { PreviewPanelProps } from "./PreviewPanel.types";
-import { PreviewCanvas } from "./parts/PreviewCanvas";
-import { PreviewToolbar } from "./parts/PreviewToolbar";
-import { VisionFilters } from "./parts/VisionFilters";
-import styles from "./PreviewPanel.module.scss";
 
 /**
- * Live preview: a sample product drawn with the system, in light or dark, with optional color-vision simulation.
+ * Live preview: a whole sample product (landing, dashboard or mobile app) drawn with the system.
  *
  * @param props Props of the component, see {@link PreviewPanelProps}.
  * @param props.system Design system to draw with.
+ * @param props.mode Light or dark.
+ * @param props.vision Vision mode to simulate.
+ * @param props.scene Sample product to show.
  * @returns The rendered element.
  */
-export function PreviewPanel({ system }: PreviewPanelProps) {
-  const [mode, setMode] = useState<ThemeMode>("light");
-  const [vision, setVision] = useState<VisionMode>("normal");
+export function PreviewPanel({ system, mode, vision, scene }: PreviewPanelProps) {
+  const scenes = { landing: <LandingScene />, dashboard: <DashboardScene />, mobile: <MobileScene /> };
 
   return (
-    <div className={styles.panel}>
-      <VisionFilters />
-      <PreviewToolbar mode={mode} vision={vision} onModeChange={setMode} onVisionChange={setVision} />
-      <PreviewCanvas system={system} mode={mode} vision={vision} />
-    </div>
+    <ThemeCanvas system={system} mode={mode} vision={vision} label={CANVAS_LABEL}>
+      {scenes[scene]}
+    </ThemeCanvas>
   );
 }
