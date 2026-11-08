@@ -1,0 +1,23 @@
+.icon {
+  flex: 0 0 auto;
+}
+
+.inherit {
+  color: currentcolor;
+}
+
+.secondary {
+  color: var(--color-text-secondary);
+}
+
+.success {
+  color: var(--color-success-strong);
+}
+
+.danger {
+  color: var(--color-danger-strong);
+}
+
+.brand {
+  color: var(--color-text-brand);
+}
