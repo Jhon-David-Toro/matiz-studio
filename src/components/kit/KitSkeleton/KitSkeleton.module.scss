@@ -1,0 +1,43 @@
+.skeleton {
+  display: flex;
+  gap: var(--space-3);
+}
+
+%shimmer {
+  background: linear-gradient(90deg, var(--color-surface-muted), var(--color-border), var(--color-surface-muted));
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.avatar {
+  @extend %shimmer;
+
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+.lines {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.line {
+  @extend %shimmer;
+
+  height: 0.75rem;
+  border-radius: var(--radius-sm);
+
+  &:last-child {
+    width: 60%;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
