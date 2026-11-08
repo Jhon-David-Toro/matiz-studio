@@ -1,0 +1,58 @@
+@use "abstracts/typography";
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 6rem 3rem 1fr;
+  align-items: center;
+  gap: var(--spacing-12);
+}
+
+.name {
+  @include typography.style("label-m");
+}
+
+.value {
+  overflow: hidden;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-data);
+  font-size: var(--font-size-12);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.visual {
+  display: block;
+}
+
+.space .visual {
+  width: min(var(--token), 6rem);
+  height: 0.75rem;
+  border-radius: 2px;
+  background-color: var(--color-brand-violet);
+}
+
+.radius .visual {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--color-brand-violet);
+  border-start-start-radius: min(var(--token), 1.25rem);
+  background-color: var(--color-brand-violet-subtle);
+}
+
+.shadow {
+  gap: var(--spacing-16);
+}
+
+.shadow .visual {
+  width: 4rem;
+  height: 2.5rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-background-surface);
+  box-shadow: var(--token);
+}
