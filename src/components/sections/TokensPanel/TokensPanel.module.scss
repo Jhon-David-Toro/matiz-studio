@@ -1,0 +1,129 @@
+@use "abstracts" as *;
+@use "abstracts/typography";
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-32);
+}
+
+.section {
+  @include surface;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-20);
+  min-width: 0;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.sectionTitle {
+  @include typography.style("heading-h2");
+}
+
+.sectionDescription {
+  max-width: 40rem;
+  color: var(--color-text-secondary);
+
+  @include typography.style("body-s");
+}
+
+.palettes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+}
+
+.columns {
+  display: grid;
+  gap: var(--spacing-16);
+
+  @include desktop {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Semantic table */
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 30rem;
+  text-align: start;
+
+  th,
+  td {
+    padding: var(--spacing-8) var(--spacing-12) var(--spacing-8) 0;
+    border-block-end: var(--border-width-default) solid var(--color-border-default);
+    text-align: start;
+  }
+
+  thead th {
+    color: var(--color-text-tertiary);
+
+    @include typography.style("overline");
+  }
+}
+
+.tokenName {
+  font-family: var(--font-family-data);
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-medium);
+}
+
+.tokenValue {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+}
+
+.chip {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: var(--border-width-default) solid rgb(0 0 0 / 10%);
+  border-radius: var(--radius-sm);
+  background-color: var(--chip);
+}
+
+.ref {
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-data);
+  font-size: var(--font-size-12);
+}
+
+/* Fonts */
+
+.fonts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-8);
+  margin: 0;
+}
+
+.font {
+  display: flex;
+  gap: var(--spacing-8);
+  padding: var(--spacing-8) var(--spacing-12);
+  border-radius: var(--radius-md);
+  background-color: var(--color-background-muted);
+
+  dt {
+    color: var(--color-text-secondary);
+
+    @include typography.style("body-s");
+  }
+
+  dd {
+    margin: 0;
+
+    @include typography.style("label-m");
+  }
+}
