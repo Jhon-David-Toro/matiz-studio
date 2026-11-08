@@ -1,0 +1,29 @@
+@use "abstracts" as *;
+@use "abstracts/typography";
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  min-width: 0;
+}
+
+.label {
+  color: var(--color-text-primary);
+
+  @include typography.style("label-m");
+}
+
+.input {
+  @include field-control;
+}
+
+.message {
+  color: var(--color-text-secondary);
+
+  @include typography.style("body-s");
+}
+
+.error {
+  color: var(--color-error-strong);
+}
