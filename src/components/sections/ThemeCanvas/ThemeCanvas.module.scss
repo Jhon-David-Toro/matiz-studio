@@ -1,0 +1,59 @@
+@use "abstracts" as *;
+
+.filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+  margin-block-end: var(--spacing-16);
+}
+
+.toolbarEnd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--spacing-16);
+  margin-inline-start: auto;
+}
+
+.vision {
+  width: 14rem;
+}
+
+/* From here on only the generated tokens are used */
+.canvas {
+  --ease: 220ms ease;
+
+  padding: var(--space-6);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base-size);
+  line-height: var(--text-base-line-height);
+  transition:
+    background-color var(--ease),
+    color var(--ease);
+
+  * {
+    transition:
+      background-color var(--ease),
+      border-color var(--ease),
+      color var(--ease),
+      border-radius var(--ease),
+      box-shadow var(--ease);
+  }
+
+  @include tablet {
+    padding: var(--space-8);
+  }
+}
