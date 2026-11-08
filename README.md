@@ -16,7 +16,9 @@ Pick a brand color and move four personality sliders (roundness, density, depth 
 | **Color harmonies** | The accent comes from complementary, analogous, triadic or split-complementary hues, choosing its most vivid readable step. |
 | **Color-vision simulation** | The preview can render as protanopia, deuteranopia, tritanopia or achromatopsia, using SVG color matrices. |
 | **Light and dark** | Both themes come from the same palettes, with different rules. |
-| **Exports** | CSS custom properties (`[data-theme="dark"]`), Sass variables, and W3C Design Tokens JSON with aliases. The JSON works with Tokens Studio for Figma and Style Dictionary. |
+| **Sample kit** | 23 components (buttons, fields, checks, switches, slider, chips, tabs, breadcrumbs, pagination, stepper, alerts, toast, progress, skeleton, badges, tooltip, avatars, stats, table, empty state, menu, dialog, accordion, card), drawn only with the generated tokens. |
+| **Three scenes** | The preview shows a landing page, a product dashboard or a mobile app with three screens. The **Componentes** tab shows the whole kit as a gallery. |
+| **Exports** | CSS custom properties (`[data-theme="dark"]`), Sass variables, W3C Design Tokens JSON with aliases (it works with Tokens Studio for Figma and Style Dictionary) and a typed TypeScript object. |
 | **Shareable** | The configuration is encoded in the query string (`?c=5b3cff&h=complementary&f=tech&r=1.25&p=45-50-35-60`). |
 | **Presets and Remix** | Fintech, Editorial, Juguetón, Brutalista and Bienestar, plus a random generator. |
 
@@ -64,13 +66,16 @@ pnpm check          # typecheck + lint + test + build
 src/
   app/                    Route and metadata. The page only renders the Editor.
   components/
-    ui/                   Generic: Button, Slider, ColorField, Tabs, SegmentedControl, SelectField, Snackbar…
+    ui/                   Generic pieces of the app: Button, Slider, ColorField, Tabs, SegmentedControl…
+    kit/                  Sample kit drawn ONLY with generated tokens: KitButton, KitField, KitTable…
     patterns/             Domain pieces: PaletteStrip, ContrastList, TypeSpecimen, ScaleList, CodeBlock
-    sections/             Editor, AppHeader, ControlsPanel, Workspace, PreviewPanel, TokensPanel,
+    sections/             Editor, AppHeader, ControlsPanel, Workspace, ThemeCanvas, PreviewPanel,
+                          LandingScene, DashboardScene, MobileScene, ComponentsPanel, TokensPanel,
                           AccessibilityPanel, ExportPanel
   lib/
     color/                OKLCH ⇄ sRGB, gamut mapping, WCAG contrast, color-vision matrices
     system/               Generator: scales, theme rules, personality, type, exports, URL, presets, remix
+    kit/                  Shared types and sample data of the kit
     shared/               cx, clipboard, download, address helpers
   styles/                 App tokens (foundations), mixins (abstracts), reset (base)
 eslint-rules/             Local ESLint rule: effects only call a function
@@ -84,8 +89,8 @@ SystemConfig ─┬─ buildPalettes ── 7 OKLCH scales (brand anchored)
               ├─ typeScale ────── modular sizes on a 4px grid
               └─ personality ──── spacing · radius · shadows
                          │
-                         ├─ themeStyle → live preview (custom properties)
-                         └─ exportSystem → CSS · SCSS · W3C JSON
+                         ├─ themeStyle → ThemeCanvas → kit, scenes and gallery
+                         └─ exportSystem → CSS · SCSS · W3C JSON · TypeScript
 ```
 
 Every component lives in its own folder with `X.tsx`, `X.types.ts`, `X.constants.ts`, `X.utils.ts`, `X.module.scss`, `X.test.tsx`, `index.ts`, and `hooks/` and `parts/` when needed.
@@ -98,5 +103,5 @@ The full rules are in [`CONTRIBUTING.md`](./CONTRIBUTING.md). The main ones:
 - **Effects only call a named function**, for example `useEffect(() => syncAddress(config), [config])`. This is enforced by the local rule `local/effect-calls-function`.
 - **JSDoc** on every named function, hook and component, enforced by `eslint-plugin-jsdoc`.
 - **Types** go in `X.types.ts` and **constants and copy** in `X.constants.ts`. Code is in English; the UI is in Spanish.
-- **SCSS Modules and tokens only.** The preview uses only the generated custom properties, so it shows exactly what the export produces.
+- **SCSS Modules and tokens only.** The app uses its own tokens (`styles/foundations`); the kit uses only the generated custom properties, through the mixins in `styles/abstracts/_kit.scss`, so the preview shows exactly what the export produces.
 - **Git:** conventional commits, subject only.

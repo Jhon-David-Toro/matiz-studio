@@ -52,3 +52,9 @@ Rules for anyone (person or agent) changing this code. `pnpm check` must pass be
 - All color math lives in `src/lib/color` (OKLCH conversions, gamut mapping, WCAG contrast) and is pure and tested.
 - Semantic tokens are chosen by the rules in `src/lib/system/theme.constants.ts`. To change how a token is picked, change its rule, not the components.
 - The accessibility test in `system.test.ts` generates the presets and 30 random systems and requires every contrast pair to pass in both themes. Keep it green.
+
+## Sample kit
+
+- `src/components/kit` holds the sample components shown in the preview and the gallery. They are drawn **only** with the custom properties Matiz generates (`--color-*`, `--space-*`, `--radius-*`, `--shadow-*`, `--font-*`, `--text-*`), through the mixins of `styles/abstracts/_kit.scss`. Never use the app tokens there.
+- Kit components only render inside a `ThemeCanvas`, which sets those properties.
+- Sample data shared by several scenes lives in `src/lib/kit/kit.samples.constants.ts`.
