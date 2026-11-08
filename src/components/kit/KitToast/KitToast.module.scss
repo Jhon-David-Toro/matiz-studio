@@ -1,0 +1,46 @@
+@use "abstracts/kit";
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-text);
+  color: var(--color-background);
+  box-shadow: var(--shadow-lg);
+
+  @include kit.text("sm");
+}
+
+.message {
+  flex: 1 1 auto;
+}
+
+%toast-button {
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+
+  @include kit.focus;
+}
+
+.action {
+  @extend %toast-button;
+
+  padding: var(--space-2);
+  font-weight: 700;
+}
+
+.close {
+  @extend %toast-button;
+
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-sm);
+  opacity: 0.7;
+}
