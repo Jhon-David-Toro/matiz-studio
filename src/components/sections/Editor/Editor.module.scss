@@ -1,0 +1,14 @@
+@use "abstracts" as *;
+
+.editor {
+  --header-height: 3.75rem;
+
+  min-height: 100dvh;
+}
+
+.body {
+  @include desktop {
+    display: grid;
+    grid-template-columns: 21rem minmax(0, 1fr);
+  }
+}
