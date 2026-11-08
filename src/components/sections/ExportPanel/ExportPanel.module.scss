@@ -1,0 +1,26 @@
+@use "abstracts/typography";
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-12);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-8);
+}
+
+.hint {
+  color: var(--color-text-secondary);
+
+  @include typography.style("body-s");
+}
